@@ -1,8 +1,9 @@
 import React from 'react'
-
+import { Button } from '@/components/ui/button'
 const page = () => {
   return (
-    <div>Auth page</div>
+    <div>
+<button>Test button</button></div>
   )
 }
 
