@@ -3,30 +3,28 @@ import { Image as ImageIcon, Loader, SendHorizontal, ThumbsUp } from "lucide-rea
 import Image from "next/image";
 import { Textarea } from "../ui/textarea";
 import { useEffect, useRef, useState } from "react";
-
-
+import EmojiPicker from "./EmojiPicker";
 import { Button } from "../ui/button";
 import useSound from "use-sound";
 import { usePreferences } from "@/store/usePreferences";
-
-
-
-
-
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { sendMessageAction } from "@/actions/message.actions";
+import { useSelectedUser } from "@/store/useSelectedUser";
+import { CldUploadWidget, CloudinaryUploadWidgetInfo } from "next-cloudinary";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "../ui/dialog";
-
-
-
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { pusherClient } from "@/lib/pusher";
+import { Message } from "@/db/dummy";
 
 
 const ChatBottomBar = () => {
 	const [message, setMessage] = useState("");
 	const textAreaRef = useRef<HTMLTextAreaElement>(null);
-	const { selectedUser } = selectedUser();
+	const { selectedUser } = useSelectedUser();
 	const { user: currentUser } = useKindeBrowserClient();
 
 	const { soundEnabled } = usePreferences();
-	const queryClient = queryClient();
+	const queryClient = useQueryClient();
 
 	const [imgUrl, setImgUrl] = useState("");
 
