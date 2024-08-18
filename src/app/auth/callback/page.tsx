@@ -1,5 +1,6 @@
 "use client";
-
+import { checkAuthStatus } from "@/actions/auth.actions";
+import { useQuery } from "@tanstack/react-query";
 import { Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -24,11 +25,3 @@ const Page = () => {
 	);
 };
 export default Page;
-
-function checkAuthStatus() {
-  throw new Error("Function not implemented.");
-}
-function useQuery(arg0: { queryKey: string[]; queryFn: () => Promise<void>; }): { data: any; } {
-  throw new Error("Function not implemented.");
-}
-
