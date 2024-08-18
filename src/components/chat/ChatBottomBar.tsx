@@ -209,10 +209,4 @@ const ChatBottomBar = () => {
 };
 export default ChatBottomBar;
 
-function useMutation(arg0: { mutationFn: any; }): { mutate: any; isPending: any; } {
-    throw new Error("Function not implemented.");
-}
-function useKindeBrowserClient(): { user: any; } {
-    throw new Error("Function not implemented.");
-}
 
