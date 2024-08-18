@@ -39,14 +39,6 @@ export default async function Home() {
 	const layout = cookies().get("react-resizable-panels:layout");
 	const defaultLayout = layout ? JSON.parse(layout.value) : undefined;
 
-
-    //await redis.set("foo", "bar");
-
-    const data = await redis.get("foo");
-
-   console.log("foo key and value:", data);
-
-
 	const { isAuthenticated } = getKindeServerSession();
 	if (!(await isAuthenticated())) return redirect("/auth");
 
@@ -64,7 +56,7 @@ export default async function Home() {
 			/>
 
 			<div className='z-10 border rounded-lg max-w-5xl w-full min-h-[85vh] text-sm lg:flex'>
-				<ChatLayout defaultLayout={defaultLayout} />
+				<ChatLayout defaultLayout={defaultLayout} users={users} />
 			</div>
 		</main>
 	);
