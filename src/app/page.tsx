@@ -16,10 +16,13 @@ async function getUsers(): Promise<User[]> {
 		cursor = nextCursor;
 		userKeys.push(...keys);
 	} while (cursor !== "0");
-	// user:123 user:456 user:789
 
 	const { getUser } = getKindeServerSession();
 	const currentUser = await getUser();
+
+	if (userKeys.length === 0) {
+		return []; // No users found, return an empty array
+	}
 
 	const pipeline = redis.pipeline();
 	userKeys.forEach((key) => pipeline.hgetall(key));
@@ -34,6 +37,7 @@ async function getUsers(): Promise<User[]> {
 	}
 	return users;
 }
+
 
 export default async function Home() {
 	const layout = cookies().get("react-resizable-panels:layout");
