@@ -1,11 +1,11 @@
 <h1 align="center">Blitz Chat App ⚡</h1>
 
 <p align="center">
-  <img src="/public/photo1.jpg" alt="Demo App" width="400"/>
+  <img src="/public/photo1.jpg" alt="Demo App" width="700"/>
 </p>
 
 <p align="center">
-  <img src="/public/photo2.jpg" alt="Demo App" width="400"/>
+  <img src="/public/photo2.jpg" alt="Demo App" width="700"/>
 </p>
 
 
