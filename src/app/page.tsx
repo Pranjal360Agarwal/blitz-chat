@@ -40,8 +40,11 @@ export default async function Home() {
 	const defaultLayout = layout ? JSON.parse(layout.value) : undefined;
 
 
-    await redis.set("foo", "bar");
+    //await redis.set("foo", "bar");
 
+    const data = await redis.get("foo");
+
+   console.log("foo key and value:", data);
 
 
 	const { isAuthenticated } = getKindeServerSession();
