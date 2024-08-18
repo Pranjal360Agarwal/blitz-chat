@@ -1,4 +1,13 @@
-# Blitz Chat App
+<h1 align="center">Blitz Chat App ⚡</h1>
+
+<p align="center">
+  <img src="/public/photo1.jpg" alt="Demo App" width="400"/>
+</p>
+
+<p align="center">
+  <img src="/public/photo2.jpg" alt="Demo App" width="400"/>
+</p>
+
 
 Blitz Chat is a full-stack chat application built with Next.js 14, TypeScript, Tailwind CSS, and UPSTASH Redis. The app supports real-time messaging, secure authentication, and includes features like image uploads, notification sounds, and a responsive UI with light and dark modes.
 
