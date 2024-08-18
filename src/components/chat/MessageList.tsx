@@ -1,11 +1,15 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { Avatar, AvatarImage } from "../ui/avatar";
-import { AwaitedReactNode, JSXElementConstructor, Key, ReactElement, ReactNode, useEffect, useRef } from "react";
-
+import { useSelectedUser } from "@/store/useSelectedUser";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { useQuery } from "@tanstack/react-query";
+import { getMessages } from "@/actions/message.actions";
+import { useEffect, useRef } from "react";
+import MessageSkeleton from "../skeletons/MessageSkeleton";
 
 const MessageList = () => {
-	const {  } = ();
+	const { selectedUser } = useSelectedUser();
 	const { user: currentUser, isLoading: isUserLoading } = useKindeBrowserClient();
 	const messageContainerRef = useRef<HTMLDivElement>(null);
 
@@ -13,7 +17,7 @@ const MessageList = () => {
 		queryKey: ["messages", selectedUser?.id],
 		queryFn: async () => {
 			if (selectedUser && currentUser) {
-				return await messages(selectedUser?.id, currentUser?.id);
+				return await getMessages(selectedUser?.id, currentUser?.id);
 			}
 		},
 		enabled: !!selectedUser && !!currentUser && !isUserLoading,
@@ -31,7 +35,7 @@ const MessageList = () => {
 			{/* This component ensure that an animation is applied when items are added to or removed from the list */}
 			<AnimatePresence>
 				{!isMessagesLoading &&
-					messages?.map((message: { senderId: any; messageType: string; content: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<AwaitedReactNode> | null | undefined; }, index: Key | null | undefined) => (
+					messages?.map((message, index) => (
 						<motion.div
 							key={index}
 							layout
@@ -90,7 +94,9 @@ const MessageList = () => {
 
 				{isMessagesLoading && (
 					<>
-						
+						<MessageSkeleton />
+						<MessageSkeleton />
+						<MessageSkeleton />
 					</>
 				)}
 			</AnimatePresence>
@@ -99,10 +105,4 @@ const MessageList = () => {
 };
 export default MessageList;
 
-function useKindeBrowserClient(): { user: any; isLoading: any; } {
-    throw new Error("Function not implemented.");
-}
-function useQuery(arg0: { queryKey: any[]; queryFn: () => Promise<any>; enabled: boolean; }): { data: any; isLoading: any; } {
-    throw new Error("Function not implemented.");
-}
 
