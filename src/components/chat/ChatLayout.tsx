@@ -2,16 +2,19 @@
 import { useEffect, useState } from "react";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "../ui/resizable";
 import { cn } from "@/lib/utils";
-
+import Sidebar from "../Sidebar";
+import MessageContainer from "./MessageContainer";
+import { User } from "@/db/dummy";
+import { useSelectedUser } from "@/store/useSelectedUser";
 
 interface ChatLayoutProps {
 	defaultLayout: number[] | undefined;
-
+	users: User[];
 }
 const ChatLayout = ({ defaultLayout = [320, 480], users }: ChatLayoutProps) => {
 	const [isCollapsed, setIsCollapsed] = useState(false);
 	const [isMobile, setIsMobile] = useState(false);
-	
+	const { selectedUser } = useSelectedUser();
 
 	useEffect(() => {
 		const checkScreenWidth = () => {
