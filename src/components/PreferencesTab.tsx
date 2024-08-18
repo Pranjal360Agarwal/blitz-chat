@@ -1,11 +1,12 @@
 "use client";
 import { MoonIcon, SunIcon, Volume2, VolumeX } from "lucide-react";
 import { Button } from "./ui/button";
+import { useTheme } from "next-themes";
 import { usePreferences } from "@/store/usePreferences";
 import { useSound } from "use-sound";
 
 const PreferencesTab = () => {
-	
+	const { setTheme } = useTheme();
 
 	const { soundEnabled, setSoundEnabled } = usePreferences();
 	const [playMouseClick] = useSound("/sounds/mouse-click.mp3");
@@ -18,7 +19,7 @@ const PreferencesTab = () => {
 				variant={"outline"}
 				size={"icon"}
 				onClick={() => {
-					
+					setTheme("light");
 					soundEnabled && playMouseClick();
 				}}
 			>
